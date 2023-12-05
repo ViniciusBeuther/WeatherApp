@@ -29,8 +29,14 @@ imageArr.push(
     [image04n, '04n'],
     [image09d, '09d'],
     [image09n, '09n'],
-    [image09d, '09d'],
-    
+    [image10d, '10d'],
+    [image10n, '10n'],
+    [image11d, '11d'],
+    [image11n, '11n'],
+    [image13d, '13d'],
+    [image13n, '13n'],
+    [image50d, '50d'],
+    [image50n, '50n'],
      )
 
 const chooseIcon = async (iconCode) =>{
