@@ -42,7 +42,7 @@ imageArr.push(
 const chooseIcon = (iconCode) => {
     for (let i = 0; i < imageArr.length; i++) {
         if (imageArr[i][1] === iconCode) {
-            return <img src={imageArr[i][0]} alt="weatherIcon" />;
+            return <img src={imageArr[i][0]} className='w-[180px] h-[180px]' alt="weatherIcon" />;
         }
     }
 };
