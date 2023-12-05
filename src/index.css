@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+#root{
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(to left top, #fee3bc, #fbd1a6, #f8bf93, #f6ac83, #f39876);
+}
+
+
