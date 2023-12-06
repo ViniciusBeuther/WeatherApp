@@ -42,7 +42,13 @@ imageArr.push(
 const chooseIcon = (iconCode) => {
     for (let i = 0; i < imageArr.length; i++) {
         if (imageArr[i][1] === iconCode) {
-            return <img src={imageArr[i][0]} className='w-[180px] h-[180px]' alt="weatherIcon" />;
+            return (
+                <img
+                    src={imageArr[i][0]}
+                    className="w-[11.75rem] h-[11.25rem]"
+                    alt="weatherIcon"
+                />
+            );
         }
     }
 };
@@ -56,25 +62,35 @@ export default function WeatherComponent(props) {
 
     return (
         <>
-            <div>
+            <div className='flex'>
+                {/* Span to display the weather icon */}
                 <span>
                     {firstForecast &&
                     firstForecast.weather &&
                     firstForecast.weather[0] ? (
-                        //<img src={chooseIcon(firstForecast.weather[0].icon)} alt="weatherIcon" />
                         chooseIcon(props.data.list[0].weather[0].icon)
-                        //console.log(props.data.list[0].weather[0].icon)
-                    ) : (
-                        <div>Not found</div>
-                    )}
+                        /* console.log(props.data.list[0].weather[0].icon)*/
+                    ) : (<div>Not found</div>)}
                 </span>
-                <span>
-                    <strong>
-                        <h1>
-                            {firstForecast ? firstForecast.main.temp : 'N/A'}
-                        </h1>
-                    </strong>{' '}
-                    °C
+                {/* Span to display the temperature and weather */}
+                <span>                        
+                            {firstForecast ?  (
+                            <>
+                                <span className='flex bg-red items-center justify-start'>
+                                    <h1>
+                                        <strong className='text-[6.75rem]'>
+                                            {Math.floor(firstForecast.main.temp)}
+                                        </strong> 
+                                        °C
+                                    </h1>
+                                    
+                                </span>
+                                <span>
+                                    <h1>{firstForecast.weather[0].main}</h1>
+                                </span>
+                            </>
+                            ) : 'N/A'}
+
                 </span>
             </div>
         </>
