@@ -45,7 +45,7 @@ const chooseIcon = (iconCode) => {
             return (
                 <img
                     src={imageArr[i][0]}
-                    className="w-[11.75rem] h-[11.25rem]"
+                    className="w-[11.75rem] h-[11.25rem] mr-[1.5rem]"
                     alt="weatherIcon"
                 />
             );
@@ -62,7 +62,7 @@ export default function WeatherComponent(props) {
 
     return (
         <>
-            <div className='flex'>
+            <div className='flex mt-10 text-primary-text justify-center items-center'>
                 {/* Span to display the weather icon */}
                 <span>
                     {firstForecast &&
@@ -73,20 +73,22 @@ export default function WeatherComponent(props) {
                     ) : (<div>Not found</div>)}
                 </span>
                 {/* Span to display the temperature and weather */}
-                <span>                        
+                <span className=''>                        
                             {firstForecast ?  (
                             <>
-                                <span className='flex bg-red items-center justify-start'>
-                                    <h1>
-                                        <strong className='text-[6.75rem]'>
-                                            {Math.floor(firstForecast.main.temp)}
-                                        </strong> 
-                                        °C
-                                    </h1>
-                                    
+                                <span className='flex  items-center justify-center'>
+                                    <span className='flex flex-col justify-center items-center'>
+                                        <h1>
+                                            <strong className='text-[6.75rem]'>
+                                                {Math.floor(firstForecast.main.temp)}
+                                            </strong>
+                                         <span className='relative bottom-[3.125rem]'>°C</span>
+                                        </h1>
+                                        <p className='mt-[-30px] text-[1.5rem]'>{firstForecast.weather[0].main}</p>
+                                    </span>
                                 </span>
                                 <span>
-                                    <h1>{firstForecast.weather[0].main}</h1>
+                                    <h1></h1>
                                 </span>
                             </>
                             ) : 'N/A'}
