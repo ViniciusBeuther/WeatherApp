@@ -4,7 +4,7 @@ export default function WeatherDetails({ icon, description, infoToShow }) {
     return (
         <>
             {/* Weather Cards to show rainfall, humidity, and wind */}
-            <section className="bg-white flex items-center justify-between mt-5 ml-5 mr-5 py-2 px-3 rounded-xl shadow-xl h-[4rem] lg:mr-20 lg:ml-20">
+            <section className="text-primary-text bg-white flex items-center justify-between mt-5 ml-5 mr-5 py-2 px-3 rounded-xl shadow-xl h-[4rem] lg:mr-20 lg:ml-20">
                 <div className="flex items-center w-[50%]">
                     <img
                         src={icon}

@@ -45,7 +45,7 @@ const chooseIcon = (iconCode) => {
             return (
                 <img
                     src={imageArr[i][0]}
-                    className="w-[11.75rem] h-[11.25rem] mr-[1.5rem]"
+                    className="w-[13rem] h-[11.25rem] mr-[1.5rem] md:mr-[1.75rem] lg:mr-[2rem]"
                     alt="weatherIcon"
                 />
             );
@@ -60,14 +60,14 @@ export default function WeatherComponent(props) {
             ? props.data.list[0]
             : null;
 
+    const isResponseAvailable = firstForecast && firstForecast.weather && firstForecast.weather[0]
+
     return (
         <>
-            <div className="flex mt-10 text-primary-text justify-center items-center mb-10">
+            <div className="flex mt-10 text-primary-text justify-between md:justify-center items-center mb-10">
                 {/* Span to display the weather icon */}
-                <span>
-                    {firstForecast &&
-                    firstForecast.weather &&
-                    firstForecast.weather[0] ? (
+                <span className='ml-5'>
+                    {isResponseAvailable ? (
                         chooseIcon(props.data.list[0].weather[0].icon)
                     ) : (
                         /* console.log(props.data.list[0].weather[0].icon)*/
@@ -75,7 +75,7 @@ export default function WeatherComponent(props) {
                     )}
                 </span>
                 {/* Span to display the temperature and weather */}
-                <span className="">
+                <span className="mr-5">
                     {firstForecast ? (
                         <>
                             <span className="flex  items-center justify-center">
@@ -94,9 +94,6 @@ export default function WeatherComponent(props) {
                                         {firstForecast.weather[0].main}
                                     </p>
                                 </span>
-                            </span>
-                            <span>
-                                <h1></h1>
                             </span>
                         </>
                     ) : (
