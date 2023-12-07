@@ -1,7 +1,11 @@
+import rainfallIcon from './assets/Weather_Icons/rainfallIcon.svg'
+import windIcon from './assets/Weather_Icons/windIcon.svg'
+import humidityIcon from './assets/Weather_Icons/humidityIcon.svg'
 import { useState, useEffect } from "react";
 import CityNameComponent from "./components/CityName";
 import HeaderComponent from "./components/Header";
 import WeatherComponent from "./components/Weather";
+import WeatherDetails from "./components/WeatherDetails";
 
 const ApiKey = "719da22d1665c7a4897ef620327ff35e";
 
@@ -28,6 +32,20 @@ export default function App() {
       <HeaderComponent apiMethod={ApiResponse} />
       <CityNameComponent data={result} />
       <WeatherComponent data={result} />
+      {/* weather information long cards */}
+      <>
+        {console.log(result)}
+        
+        {result.list && result.list[0] && result.list[0].weather ? (
+          <>
+          <WeatherDetails icon={rainfallIcon} description="Rainfall" infoToShow={result.list[0].weather.rain + ' mm'} />
+
+          <WeatherDetails icon={windIcon} description="Wind Speed" infoToShow={Math.floor(result.list[0].wind.speed) + ' km/h'} />
+
+          <WeatherDetails icon={humidityIcon} description="Humidity" infoToShow={result.list[0].main.humidity + ' %'} />
+          </>
+        ) : ('Loading')}
+      </>
     </>
   );
 }

@@ -62,37 +62,46 @@ export default function WeatherComponent(props) {
 
     return (
         <>
-            <div className='flex mt-10 text-primary-text justify-center items-center'>
+            <div className="flex mt-10 text-primary-text justify-center items-center mb-10">
                 {/* Span to display the weather icon */}
                 <span>
                     {firstForecast &&
                     firstForecast.weather &&
                     firstForecast.weather[0] ? (
                         chooseIcon(props.data.list[0].weather[0].icon)
+                    ) : (
                         /* console.log(props.data.list[0].weather[0].icon)*/
-                    ) : (<div>Not found</div>)}
+                        <div>Not found</div>
+                    )}
                 </span>
                 {/* Span to display the temperature and weather */}
-                <span className=''>                        
-                            {firstForecast ?  (
-                            <>
-                                <span className='flex  items-center justify-center'>
-                                    <span className='flex flex-col justify-center items-center'>
-                                        <h1>
-                                            <strong className='text-[6.75rem]'>
-                                                {Math.floor(firstForecast.main.temp)}
-                                            </strong>
-                                         <span className='relative bottom-[3.125rem]'>°C</span>
-                                        </h1>
-                                        <p className='mt-[-30px] text-[1.5rem]'>{firstForecast.weather[0].main}</p>
-                                    </span>
+                <span className="">
+                    {firstForecast ? (
+                        <>
+                            <span className="flex  items-center justify-center">
+                                <span className="flex flex-col justify-center items-center">
+                                    <h1>
+                                        <strong className="text-[6.75rem]">
+                                            {Math.floor(
+                                                firstForecast.main.temp
+                                            )}
+                                        </strong>
+                                        <span className="relative bottom-[3.125rem]">
+                                            °C
+                                        </span>
+                                    </h1>
+                                    <p className="mt-[-30px] text-[1.5rem]">
+                                        {firstForecast.weather[0].main}
+                                    </p>
                                 </span>
-                                <span>
-                                    <h1></h1>
-                                </span>
-                            </>
-                            ) : 'N/A'}
-
+                            </span>
+                            <span>
+                                <h1></h1>
+                            </span>
+                        </>
+                    ) : (
+                        'N/A'
+                    )}
                 </span>
             </div>
         </>
