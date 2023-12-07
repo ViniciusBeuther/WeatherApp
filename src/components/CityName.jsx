@@ -36,7 +36,7 @@ export default function CityNameComponent({ data }) {
     
 
     return (
-        <div className='px-5'>
+        <div className='px-5 lg:px-20'>
             {data && data.list && data.list.length > 0 && (
                 <>
                     <h2 className="text-[3.875rem] text-primary-text font-semibold">
