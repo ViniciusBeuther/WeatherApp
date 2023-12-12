@@ -53,6 +53,7 @@ const chooseIcon = (iconCode) => {
     }
 };
 
+
 export default function WeatherComponent(props) {
     // Verifica se há pelo menos uma previsão na lista
     const firstForecast =
