@@ -86,19 +86,17 @@ const buildWeatherInfo = (props) => {
 
 export default function PreviewNextDays(apiMainData) {
     return (
-        <>
-            <div className="flex justify-around items-center mt-10">
-                {buildWeatherInfo(apiMainData).map((element, index) => (
-                    <span key={index} className="flex justify-center flex-col bg-white p-10 rounded-full items-center">
-                        <h1>WEEK DAY</h1>
-                        {chooseIcon(element.code)}
-                        <div>
-                            <p>{element.temperature}</p>
-                            <p>{element.weather}</p>
-                        </div>
-                    </span>
-                ))}
-            </div>
-        </>
+        <div className="flex justify-around items-center overflow-x-auto whitespace-nowrap">
+            {buildWeatherInfo(apiMainData).map((element, index) => (
+                <span key={index} className="flex justify-center flex-col bg-white px-10 h-[12rem] rounded-[50px] items-center shadow-md m-2">
+                    <h1>WEEK DAY</h1>
+                    {chooseIcon(element.code)}
+                    <div className='w-[100%]'>
+                        <p className='mt-3 text-center text-nowrap font-bold text-[1rem] md:text-[1.25rem] lg:text-[1.5rem]'>{element.temperature} °C</p>
+                        <p className='mt-1 text-center font-bold text-[1rem] md:text-[1.25rem] lg:text-[1.5rem]'>{element.weather}</p>
+                    </div>
+                </span>
+            ))}
+        </div>
     );
 }
