@@ -45,13 +45,20 @@ const chooseIcon = (iconCode) => {
             return (
                 <img
                     src={imageArr[i][0]}
-                    className="w-[3rem] h-[3.25rem]"
+                    className="w-[3.75rem] h-[3.5rem]"
                     alt="weatherIcon"
                 />
             );
         }
     }
 };
+
+const getDayOfWeek = (offset) => {
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const today = new Date();
+    const dayIndex = (today.getDay() + offset) % 7;
+    return daysOfWeek[dayIndex];
+  };
 
 class WeatherPreview {
     constructor(temperature, weather, day = 'today') {
@@ -64,39 +71,40 @@ class WeatherPreview {
 
 const buildWeatherInfo = (props) => {
     const weatherArr = [];
-    for (let i = 0; i < 4; i++) {
-        let infoGroup = new WeatherPreview();
-        let apiMainData =
-            props.data.list && props.data.list.length > 0
-                ? props.data.list[i]
-                : null;
 
-        if (apiMainData === null) {
-            console.error('Error, not found');
-        } else {
-            infoGroup.temperature = apiMainData.main.temp;
-            infoGroup.weather = apiMainData.weather[0].main;
-            infoGroup.code = apiMainData.weather[0].icon;
-            weatherArr.push(infoGroup);
+    if (props.data.list && props.data.list.length > 0) {
+        for (let i = 0; i < 4; i++) {
+            let infoGroup = new WeatherPreview();
+            let apiMainData = props.data.list[i];
+
+            if (apiMainData) {
+                infoGroup.temperature = apiMainData.main?.temp || 0;
+                infoGroup.weather = apiMainData.weather[0]?.main || 'Unknown';
+                infoGroup.code = apiMainData.weather[0]?.icon || '000';
+                weatherArr.push(infoGroup);
+            } else {
+                console.error('Error, not found');
+            }
         }
     }
 
     return weatherArr;
 };
 
+
 export default function PreviewNextDays(apiMainData) {
     return (
-        <div className="flex justify-around items-center overflow-x-auto whitespace-nowrap">
-            {buildWeatherInfo(apiMainData).map((element, index) => (
-                <span key={index} className="flex justify-center flex-col bg-white px-10 h-[12rem] rounded-[50px] items-center shadow-md m-2">
-                    <h1>WEEK DAY</h1>
-                    {chooseIcon(element.code)}
-                    <div className='w-[100%]'>
-                        <p className='mt-3 text-center text-nowrap font-bold text-[1rem] md:text-[1.25rem] lg:text-[1.5rem]'>{element.temperature} °C</p>
-                        <p className='mt-1 text-center font-bold text-[1rem] md:text-[1.25rem] lg:text-[1.5rem]'>{element.weather}</p>
-                    </div>
-                </span>
-            ))}
-        </div>
+      <div className="flex mt-10 gap-2 items-center lg:justify-center overflow-x-auto whitespace-nowrap">
+        {buildWeatherInfo(apiMainData).map((element, index) => (
+          <span key={index} className="flex justify-center flex-col bg-white rounded-[50px] items-center shadow-md text-primary-text">
+            <h1 className='mb-5 pt-5'>{getDayOfWeek(index + 1)}</h1>
+            {chooseIcon(element.code)}
+            <div className='mx-10 '>
+              <p className='mt-3 text-center font-bold text-[1rem] md:text-[1.25rem] lg:text-[1.5rem]'>{Math.floor(element.temperature)} °C</p>
+              <p className='pb-5 mt-1 text-center font-bold text-[1rem] md:text-[1.25rem] lg:text-[1.5rem] w-[80px]'>{element.weather}</p>
+            </div>
+          </span>
+        ))}
+      </div>
     );
-}
+  }

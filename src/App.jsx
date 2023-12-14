@@ -7,6 +7,7 @@ import HeaderComponent from "./components/Header";
 import WeatherComponent from "./components/Weather";
 import WeatherDetails from "./components/WeatherDetails";
 import PreviewNextDays from './components/PreviewNextDays';
+import Footer from './components/Footer';
 
 const ApiKey = "719da22d1665c7a4897ef620327ff35e";
 
@@ -50,6 +51,7 @@ export default function App() {
         ) : ('Loading')}
       </>
       <PreviewNextDays data={result} />
+      <Footer />
     </>
   );
 }

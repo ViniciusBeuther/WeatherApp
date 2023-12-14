@@ -1,6 +1,4 @@
 export default function WeatherDetails({ icon, description, infoToShow }) {
-    
-    
     return (
         <>
             {/* Weather Cards to show rainfall, humidity, and wind */}
@@ -16,7 +14,9 @@ export default function WeatherDetails({ icon, description, infoToShow }) {
                     </h1>
                 </div>
                 <p className="mr-3 text-[1rem] pl-2 md:text-[1.25rem] lg:text-[1.5rem]">
-                    {(infoToShow === null || infoToShow === undefined + ' mm') ? '0 mm' : infoToShow}
+                    {infoToShow === null || infoToShow === undefined + ' mm'
+                        ? '0 mm'
+                        : infoToShow}
                 </p>
             </section>
         </>
