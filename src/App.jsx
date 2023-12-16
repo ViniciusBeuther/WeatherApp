@@ -14,7 +14,7 @@ const ApiKey = "719da22d1665c7a4897ef620327ff35e";
 export default function App() {
   const [result, setResult] = useState('');
 
-  const ApiResponse = async (searchTerm, setPlaceHolder) => {
+  const ApiResponse = async (searchTerm) => {
     try {
       const response = await fetch(`https://api.openweathermap.org/data/2.5/find?q=${searchTerm}&appid=${ApiKey}&units=metric`);
       const data = await response.json();
